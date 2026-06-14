@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generic Krushi Seva Kendra | Akot</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap');
+
+  :root {
+    --soil: #3B2A1A;
+    --leaf: #2D6A2D;
+    --leaf-light: #3D8B3D;
+    --sprout: #6DBF3E;
+    --harvest: #F0A500;
+    --harvest-light: #FFC84A;
+    --sky: #E8F5E2;
+    --fog: #F7FAF4;
+    --white: #FFFFFF;
+    --text: #1A2A1A;
+    --text-muted: #5A6B5A;
+    --border: #C8E0C0;
+    --red-brand: #C0392B;
+    --red-light: #FDECEA;
+    --green-generic: #1B7A2F;
+    --green-light: #E8F5EB;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--fog);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    background: var(--soil);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+  }
+  .nav-brand .logo-icon { font-size: 1.6rem; }
+  .nav-brand span.sub { color: var(--sprout); font-size: 0.72rem; display: block; font-weight: 400; }
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: #C8DEC8;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--sprout); }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(135deg, var(--soil) 0%, #1A3D1A 50%, var(--leaf) 100%);
+    color: var(--white);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236DBF3E' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(109,191,62,0.2);
+    border: 1px solid var(--sprout);
+    color: var(--sprout);
+    padding: 0.3rem 1rem;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  .hero h1 span { color: var(--sprout); }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: #B0D0A0;
+    margin-bottom: 0.8rem;
+  }
+  .hero-address {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #D0E8C8;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(4px);
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--sprout);
+    display: block;
+  }
+  .stat-label { font-size: 0.78rem; color: #90B890; letter-spacing: 0.5px; }
+
+  /* ─── SECTION COMMON ─── */
+  .section { padding: 4rem 2rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block;
+    background: var(--sky);
+    color: var(--leaf);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 4px;
+    margin-bottom: 0.6rem;
+    border-left: 3px solid var(--leaf);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--soil);
+    margin-bottom: 0.5rem;
+  }
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    max-width: 600px;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ─── WHY GENERIC SECTION ─── */
+  .why-section { background: var(--soil); color: var(--white); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  .why-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--white);
+  }
+  .why-left h2 em { color: var(--sprout); font-style: normal; }
+  .why-left p { color: #90B890; font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.8; }
+  .why-cta {
+    display: inline-block;
+    background: var(--sprout);
+    color: var(--soil);
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .why-cta:hover { background: var(--harvest); transform: translateY(-1px); }
+
+  /* ─── COST BREAKDOWN COMPARISON ─── */
+  .compare-section { background: var(--fog); }
+  .compare-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .ccard {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  }
+  .ccard-header {
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+  .ccard.branded .ccard-header { background: var(--red-brand); color: white; }
+  .ccard.generic .ccard-header { background: var(--green-generic); color: white; }
+  .ccard-header .icon { font-size: 1.4rem; }
+  .ccard-body { background: white; }
+  .cost-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .cost-row:last-child { border-bottom: none; }
+  .cost-label { color: var(--text-muted); }
+  .cost-val { font-weight: 600; }
+  .cost-val.red { color: var(--red-brand); }
+  .cost-val.green { color: var(--green-generic); }
+  .cost-total {
+    background: var(--fog);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .cost-total.branded { border-top: 3px solid var(--red-brand); }
+  .cost-total.generic { border-top: 3px solid var(--green-generic); }
+
+  /* Visual bar compare */
+  .bar-compare {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    margin-top: 1rem;
+  }
+  .bar-compare h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--soil);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    gap: 1rem;
+  }
+  .bar-label { width: 160px; font-size: 0.82rem; color: var(--text-muted); flex-shrink: 0; }
+  .bar-track { flex: 1; background: var(--sky); border-radius: 100px; height: 28px; position: relative; overflow: hidden; }
+  .bar-fill {
+    height: 100%;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    transition: width 1.5s ease;
+  }
+  .bar-fill.brand-fill { background: linear-gradient(90deg, var(--red-brand), #E74C3C); }
+  .bar-fill.gen-fill { background: linear-gradient(90deg, var(--green-generic), var(--sprout)); }
+
+  /* ─── SAVINGS BANNER ─── */
+  .savings-banner {
+    background: linear-gradient(135deg, var(--harvest) 0%, #E09500 100%);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    box-shadow: 0 4px 20px rgba(240,165,0,0.35);
+  }
+  .savings-text h3 { font-size: 1.6rem; font-weight: 800; color: var(--soil); }
+  .savings-text p { color: rgba(59,42,26,0.75); font-size: 0.92rem; }
+  .savings-number {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--soil);
+    line-height: 1;
+  }
+  .savings-number span { font-size: 1rem; display: block; color: rgba(59,42,26,0.6); font-weight: 500; }
+
+  /* ─── FILTER BAR ─── */
+  .filter-bar {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .filter-btn {
+    padding: 0.45rem 1.1rem;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    background: white;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--leaf);
+    border-color: var(--leaf);
+    color: white;
+  }
+
+  /* ─── PRODUCTS GRID ─── */
+  .products-section { background: white; }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.4rem;
+  }
+  .product-card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    position: relative;
+  }
+  .product-card:hover {
+    box-shadow: 0 8px 32px rgba(45,106,45,0.15);
+    transform: translateY(-3px);
+    border-color: var(--leaf-light);
+  }
+  .product-img {
+    background: var(--sky);
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    position: relative;
+  }
+  .product-cat-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(45,106,45,0.9);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .generic-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--sprout);
+    color: var(--soil);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  .product-info { padding: 1rem 1.1rem 1.1rem; }
+  .product-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--soil);
+    margin-bottom: 2px;
+  }
+  .product-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+  }
+  .product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .product-price {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--leaf);
+  }
+  .product-price .unit { font-size: 0.72rem; font-weight: 400; color: var(--text-muted); }
+  .branded-compare {
+    text-align: right;
+  }
+  .branded-compare .branded-price {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
+  .save-chip {
+    background: #E8F8E8;
+    color: var(--green-generic);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+  .no-results {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    grid-column: 1/-1;
+  }
+
+  /* ─── VISIT STORE ─── */
+  .store-section { background: linear-gradient(135deg, #1A3D1A 0%, var(--soil) 100%); color: white; }
+  .store-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .store-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  .store-info h2 em { color: var(--sprout); font-style: normal; }
+  .store-detail {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+  }
+  .store-detail .icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+  .store-detail h4 { font-size: 0.85rem; color: var(--sprout); font-weight: 600; margin-bottom: 2px; }
+  .store-detail p { font-size: 0.92rem; color: #C0D8C0; }
+  .map-placeholder {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+  }
+  .map-placeholder .map-emoji { font-size: 4rem; display: block; margin-bottom: 1rem; }
+  .map-placeholder h3 { color: var(--sprout); font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .map-placeholder p { color: #90B890; font-size: 0.88rem; }
+  .directions-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    background: var(--sprout);
+    color: var(--soil);
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: background 0.2s;
+  }
+  .directions-btn:hover { background: var(--harvest); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #0F1F0F;
+    color: #6A906A;
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.82rem;
+  }
+  footer strong { color: var(--sprout); }
+
+  /* ─── SEARCH ─── */
+  .search-wrap {
+    position: relative;
+    max-width: 400px;
+    margin-bottom: 1.5rem;
+  }
+  .search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.8rem;
+    border: 1.5px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.9rem;
+    background: white;
+    outline: none;
+    transition: border-color 0.2s;
+    color: var(--text);
+  }
+  .search-input:focus { border-color: var(--leaf); }
+  .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 1rem;
+    pointer-events: none;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .why-grid, .compare-cards, .store-grid { grid-template-columns: 1fr; }
+    .savings-banner { flex-direction: column; text-align: center; }
+    .hero { padding: 3rem 1.2rem 2.5rem; }
+    .section { padding: 2.5rem 1.2rem; }
+    .hero-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-brand">
+    <span class="logo-icon">🌾</span>
+    <div>
+      Generic Krushi Seva Kendra
+      <span class="sub">Shivaji Chowk, Akot – 444101</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#why-generic">का Generic?</a></li>
+    <li><a href="#compare">किंमत फरक</a></li>
+    <li><a href="#products">उत्पादने</a></li>
+    <li><a href="#visit">दुकान भेट द्या</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🌱 शेतकऱ्यांसाठी, शेतकऱ्यांद्वारे</div>
+  <h1>Generic <span>Krushi</span> Seva Kendra</h1>
+  <p class="hero-sub">ब्रँडेड किंमतीशिवाय, तीच गुणवत्ता — थेट शेतकऱ्यापर्यंत</p>
+  <div class="hero-address">📍 Shivaji Chowk, Akot, Dist. Akola — 444101</div>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">40–60%</span><span class="stat-label">कमी किंमत</span></div>
+    <div class="stat"><span class="stat-num">100+</span><span class="stat-label">Generic उत्पादने</span></div>
+    <div class="stat"><span class="stat-num">Same</span><span class="stat-label">Active Ingredient</span></div>
+    <div class="stat"><span class="stat-num">Zero</span><span class="stat-label">Marketing Cost</span></div>
+  </div>
+</section>
+
+<!-- WHY GENERIC -->
+<section class="section why-section" id="why-generic">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="section-tag" style="background:rgba(109,191,62,0.15);color:var(--sprout);border-left-color:var(--sprout);">का Generic?</div>
+        <h2>ब्रँडेड औषध <em>महाग का असते?</em></h2>
+        <p>
+          ब्रँडेड कृषि उत्पादनामध्ये तेच active ingredient असते जे generic मध्ये असते. 
+          फरक फक्त त्यांच्या किंमतीत असतो — कारण ब्रँडेड कंपन्या जाहिरात, 
+          packaging, commission, dealer margin, आणि R&D cost शेतकऱ्यांकडून वसूल करतात.
+        </p>
+        <p>
+          Generic उत्पादन हे थेट उत्पादकाकडून तुमच्यापर्यंत येते. त्यात 
+          कोणताही मध्यस्थ नाही, कोणतीही celebrity endorsement नाही, 
+          कोणतीही fancy packaging नाही — फक्त शुद्ध, प्रभावी औषध.
+        </p>
+        <a href="#compare" class="why-cta">किंमत फरक पहा →</a>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1.4rem;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:0.5rem;">🏭</div>
+          <div style="font-weight:700;color:var(--sprout);font-size:0.9rem;margin-bottom:4px;">Same Factory</div>
+          <div style="font-size:0.78rem;color:#90B890;">बऱ्याच generic औषधे त्याच कारखान्यात बनतात</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1.4rem;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:0.5rem;">⚗️</div>
+          <div style="font-weight:700;color:var(--sprout);font-size:0.9rem;margin-bottom:4px;">Same Chemical</div>
+          <div style="font-size:0.78rem;color:#90B890;">Active ingredient 100% समान असते</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1.4rem;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:0.5rem;">📉</div>
+          <div style="font-weight:700;color:var(--sprout);font-size:0.9rem;margin-bottom:4px;">कमी किंमत</div>
+          <div style="font-size:0.78rem;color:#90B890;">40 ते 60% स्वस्त दरात उपलब्ध</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1.4rem;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:0.5rem;">✅</div>
+          <div style="font-weight:700;color:var(--sprout);font-size:0.9rem;margin-bottom:4px;">CIB Approved</div>
+          <div style="font-size:0.78rem;color:#90B890;">सर्व generic शासनमान्य असतात</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE SECTION -->
+<section class="section compare-section" id="compare">
+  <div class="section-inner">
+    <div class="section-tag">किंमत फरक</div>
+    <h2 class="section-title">ब्रँडेड vs Generic — पैसे कुठे जातात?</h2>
+    <p class="section-desc">₹100 ब्रँडेड कीटकनाशकामध्ये तुम्ही प्रत्यक्षात किती Active Ingredient साठी पैसे देता पहा.</p>
+
+    <div class="compare-cards">
+      <!-- BRANDED -->
+      <div class="ccard branded">
+        <div class="ccard-header"><span class="icon">🏷️</span> ब्रँडेड उत्पादन (₹100 मध्ये)</div>
+        <div class="ccard-body">
+          <div class="cost-row"><span class="cost-label">🧪 Active Ingredient (actual)</span><span class="cost-val">₹25</span></div>
+          <div class="cost-row"><span class="cost-label">📺 जाहिरात (TV, होर्डिंग)</span><span class="cost-val red">₹20</span></div>
+          <div class="cost-row"><span class="cost-label">🔬 Research & Development</span><span class="cost-val red">₹15</span></div>
+          <div class="cost-row"><span class="cost-label">📦 Premium Packaging</span><span class="cost-val red">₹10</span></div>
+          <div class="cost-row"><span class="cost-label">🤝 Dealer / Distributor Margin</span><span class="cost-val red">₹15</span></div>
+          <div class="cost-row"><span class="cost-label">🎤 Celebrity Endorsement</span><span class="cost-val red">₹8</span></div>
+          <div class="cost-row"><span class="cost-label">🏢 Company Profit & Admin</span><span class="cost-val red">₹7</span></div>
+        </div>
+        <div class="cost-total branded">
+          <span>तुम्हाला मिळते (ingredient)</span>
+          <span style="color:var(--red-brand)">फक्त ₹25 चे!</span>
+        </div>
+      </div>
+
+      <!-- GENERIC -->
+      <div class="ccard generic">
+        <div class="ccard-header"><span class="icon">🌿</span> Generic उत्पादन (₹40–50 मध्ये)</div>
+        <div class="ccard-body">
+          <div class="cost-row"><span class="cost-label">🧪 Active Ingredient (actual)</span><span class="cost-val">₹30</span></div>
+          <div class="cost-row"><span class="cost-label">📦 Basic Packaging</span><span class="cost-val">₹5</span></div>
+          <div class="cost-row"><span class="cost-label">🚚 Distribution Cost</span><span class="cost-val">₹8</span></div>
+          <div class="cost-row"><span class="cost-label">📺 जाहिरात</span><span class="cost-val green">₹0</span></div>
+          <div class="cost-row"><span class="cost-label">🔬 R&D (पेटंट संपल्यावर zero)</span><span class="cost-val green">₹0</span></div>
+          <div class="cost-row"><span class="cost-label">🤝 Dealer Extra Margin</span><span class="cost-val green">₹0</span></div>
+          <div class="cost-row"><span class="cost-label">🎤 Celebrity Cost</span><span class="cost-val green">₹0</span></div>
+        </div>
+        <div class="cost-total generic">
+          <span>तुम्हाला मिळते (ingredient)</span>
+          <span style="color:var(--green-generic)">₹30+ चे ✅</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BAR CHART COMPARE -->
+    <div class="bar-compare">
+      <h3>100 रुपयांत Active Ingredient किती मिळते?</h3>
+      <div class="bar-row">
+        <div class="bar-label">ब्रँडेड उत्पादन</div>
+        <div class="bar-track"><div class="bar-fill brand-fill" style="width:25%">25%</div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Generic उत्पादन</div>
+        <div class="bar-track"><div class="bar-fill gen-fill" style="width:75%">75%</div></div>
+      </div>
+      <p style="text-align:center;font-size:0.82rem;color:var(--text-muted);margin-top:1rem;">
+        * समान Active Ingredient, समान परिणाम — Generic मध्ये तुमचे 3x अधिक मूल्य
+      </p>
+    </div>
+
+    <!-- SAVINGS BANNER -->
+    <div class="savings-banner">
+      <div class="savings-text">
+        <h3>एकरासाठी ₹5,000 खर्च Generic ने करा</h3>
+        <p>ब्रँडेड उत्पादनांऐवजी Generic निवडल्यास हंगामात प्रति एकर बचत होते</p>
+      </div>
+      <div class="savings-number">₹2,500+<span>सरासरी बचत / हंगाम</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS SECTION -->
+<section class="section products-section" id="products">
+  <div class="section-inner">
+    <div class="section-tag">उत्पादन यादी</div>
+    <h2 class="section-title">आमची Generic कृषि उत्पादने</h2>
+    <p class="section-desc">सर्व उत्पादने CIB/CIBRC मान्यताप्राप्त. दुकानात येऊन खरेदी करा.</p>
+
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="searchInput" placeholder="उत्पादन शोधा..." oninput="filterProducts()">
+    </div>
+
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" onclick="setFilter('all', this)">सर्व</button>
+      <button class="filter-btn" onclick="setFilter('insecticide', this)">🐛 कीटकनाशक</button>
+      <button class="filter-btn" onclick="setFilter('fungicide', this)">🍄 बुरशीनाशक</button>
+      <button class="filter-btn" onclick="setFilter('herbicide', this)">🌿 तणनाशक</button>
+      <button class="filter-btn" onclick="setFilter('fertilizer', this)">🌱 खते</button>
+      <button class="filter-btn" onclick="setFilter('seed', this)">🌾 बियाणे</button>
+    </div>
+
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
+</section>
+
+<!-- VISIT STORE -->
+<section class="section store-section" id="visit">
+  <div class="section-inner">
+    <div class="store-grid">
+      <div class="store-info">
+        <div class="section-tag" style="background:rgba(109,191,62,0.15);color:var(--sprout);border-left-color:var(--sprout);">दुकान भेट द्या</div>
+        <h2>खरेदी करायची आहे? <em>आमच्या दुकानात या!</em></h2>
+        <p style="color:#90B890;margin-bottom:1.5rem;font-size:0.9rem;">
+          आम्ही online विक्री करत नाही. तुमच्या पिकाची समस्या घेऊन या — 
+          आमचे तज्ञ तुम्हाला योग्य generic उत्पादन सुचवतील.
+        </p>
+        <div class="store-detail">
+          <span class="icon">📍</span>
+          <div>
+            <h4>पत्ता</h4>
+            <p>Generic Krushi Seva Kendra<br>Shivaji Chowk, Akot<br>Dist. Akola — 444101, Maharashtra</p>
+          </div>
+        </div>
+        <div class="store-detail">
+          <span class="icon">🕐</span>
+          <div>
+            <h4>वेळ</h4>
+            <p>सोमवार–शनिवार: सकाळी 8:00 – रात्री 8:00<br>रविवार: सकाळी 9:00 – दुपारी 2:00</p>
+          </div>
+        </div>
+        <div class="store-detail">
+          <span class="icon">💡</span>
+          <div>
+            <h4>विनामूल्य सेवा</h4>
+            <p>पीक रोग ओळख, Generic उत्पादन मार्गदर्शन, Dose calculation</p>
+          </div>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <span class="map-emoji">🗺️</span>
+        <h3>Shivaji Chowk, Akot</h3>
+        <p>Dist. Akola, Maharashtra — 444101</p>
+        <p style="margin-top:0.5rem;font-size:0.82rem;color:#6A906A;">Google Maps वर शोधा</p>
+        <a href="https://maps.google.com/?q=Shivaji+Chowk+Akot+Akola+444101" target="_blank" class="directions-btn">📍 Directions पहा</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>🌾 Generic Krushi Seva Kendra</strong> — Shivaji Chowk, Akot, Dist. Akola – 444101</p>
+  <p style="margin-top:0.4rem;">शेतकऱ्यांचे हित, आमचे ध्येय | Generic म्हणजे कमी दर्जा नाही — Generic म्हणजे शहाणपण!</p>
+</footer>
+
+<script>
+  const products = [
+    // Insecticides
+    { name: "Imidacloprid 17.8% SL", desc: "रस शोषणाऱ्या किडींसाठी प्रभावी", price: "₹280", unit: "500ml", brandedPrice: "₹620", save: "55%", cat: "insecticide", emoji: "🐜" },
+    { name: "Chlorpyrifos 20% EC", desc: "पानावरील व मातीतील किडींसाठी", price: "₹320", unit: "1L", brandedPrice: "₹700", save: "54%", cat: "insecticide", emoji: "🐛" },
+    { name: "Lambda Cyhalothrin 5% EC", desc: "फळबागेसाठी व कापसासाठी उपयुक्त", price: "₹210", unit: "500ml", brandedPrice: "₹480", save: "56%", cat: "insecticide", emoji: "🦗" },
+    { name: "Thiamethoxam 25% WG", desc: "Systemic कीटकनाशक, दीर्घकाळ प्रभाव", price: "₹380", unit: "100g", brandedPrice: "₹850", save: "55%", cat: "insecticide", emoji: "🐝" },
+    { name: "Profenofos 50% EC", desc: "हेलिकोव्हर्पा, थ्रिप्सविरोधी", price: "₹290", unit: "500ml", brandedPrice: "₹650", save: "55%", cat: "insecticide", emoji: "🐞" },
+    { name: "Acetamiprid 20% SP", desc: "पांढरी माशी, मावा नियंत्रण", price: "₹340", unit: "200g", brandedPrice: "₹720", save: "53%", cat: "insecticide", emoji: "🦟" },
+
+    // Fungicides
+    { name: "Mancozeb 75% WP", desc: "बुरशी रोग नियंत्रणासाठी व्यापक", price: "₹180", unit: "500g", brandedPrice: "₹420", save: "57%", cat: "fungicide", emoji: "🍄" },
+    { name: "Copper Oxychloride 50% WP", desc: "Downy mildew, Blast रोगासाठी", price: "₹160", unit: "500g", brandedPrice: "₹380", save: "58%", cat: "fungicide", emoji: "🟤" },
+    { name: "Carbendazim 50% WP", desc: "Wilt, Damping-off नियंत्रण", price: "₹220", unit: "500g", brandedPrice: "₹500", save: "56%", cat: "fungicide", emoji: "🌡️" },
+    { name: "Tebuconazole 25.9% EC", desc: "Rust, Powdery mildew साठी", price: "₹290", unit: "250ml", brandedPrice: "₹650", save: "55%", cat: "fungicide", emoji: "🧪" },
+
+    // Herbicides
+    { name: "Glyphosate 41% SL", desc: "सर्व प्रकारचे तण नाश करते", price: "₹200", unit: "1L", brandedPrice: "₹450", save: "56%", cat: "herbicide", emoji: "🌿" },
+    { name: "Atrazine 50% WP", desc: "मका, ज्वारी मधील तण नियंत्रण", price: "₹190", unit: "500g", brandedPrice: "₹430", save: "56%", cat: "herbicide", emoji: "🌾" },
+    { name: "Pendimethalin 30% EC", desc: "पेरणीपूर्वी तण नियंत्रण", price: "₹250", unit: "1L", brandedPrice: "₹560", save: "55%", cat: "herbicide", emoji: "🌱" },
+    { name: "2,4-D Amine Salt 58%", desc: "रुंद पानाचे तण नाश करते", price: "₹170", unit: "500ml", brandedPrice: "₹390", save: "56%", cat: "herbicide", emoji: "🍀" },
+
+    // Fertilizers
+    { name: "DAP (18:46:0)", desc: "फुलांच्या व फळांच्या वाढीसाठी", price: "₹1,350", unit: "50kg", brandedPrice: "₹1,800", save: "25%", cat: "fertilizer", emoji: "🌻" },
+    { name: "Urea (46% N)", desc: "नत्राचा उत्तम स्रोत, हिरवळीसाठी", price: "₹267", unit: "50kg", brandedPrice: "₹350", save: "24%", cat: "fertilizer", emoji: "💚" },
+    { name: "MOP (60% K2O)", desc: "फळ गुणवत्ता सुधारतो", price: "₹1,100", unit: "50kg", brandedPrice: "₹1,500", save: "27%", cat: "fertilizer", emoji: "🍎" },
+    { name: "13:0:45 (Potassium Nitrate)", desc: "Fertigation साठी आदर्श", price: "₹1,800", unit: "25kg", brandedPrice: "₹2,800", save: "36%", cat: "fertilizer", emoji: "🧫" },
+    { name: "Micronutrient Mixture", desc: "Zn, Fe, Mn, Cu, B, Mo", price: "₹320", unit: "1kg", brandedPrice: "₹680", save: "53%", cat: "fertilizer", emoji: "⚗️" },
+
+    // Seeds
+    { name: "सोयाबीन बियाणे (JS-335)", desc: "उच्च उत्पादन देणारे, रोगप्रतिकारक", price: "₹2,800", unit: "30kg", brandedPrice: "₹4,500", save: "38%", cat: "seed", emoji: "🫘" },
+    { name: "कापूस बियाणे (Non-Bt)", desc: "सेंद्रिय शेतीसाठी योग्य वाण", price: "₹450", unit: "450g", brandedPrice: "₹900", save: "50%", cat: "seed", emoji: "🌸" },
+    { name: "मका बियाणे (Hybrid)", desc: "दुहेरी उद्देशी, 120-130 दिवस", price: "₹1,200", unit: "10kg", brandedPrice: "₹2,000", save: "40%", cat: "seed", emoji: "🌽" },
+  ];
+
+  let currentFilter = 'all';
+  let searchQuery = '';
+
+  function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    const filtered = products.filter(p => {
+      const matchCat = currentFilter === 'all' || p.cat === currentFilter;
+      const matchSearch = p.name.toLowerCase().includes(searchQuery) || p.desc.toLowerCase().includes(searchQuery);
+      return matchCat && matchSearch;
+    });
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '<div class="no-results">🌱 कोणतेही उत्पादन सापडले नाही. वेगळ्या शब्दाने शोधा.</div>';
+      return;
+    }
+
+    const catLabels = { insecticide: 'कीटकनाशक', fungicide: 'बुरशीनाशक', herbicide: 'तणनाशक', fertilizer: 'खत', seed: 'बियाणे' };
+
+    grid.innerHTML = filtered.map(p => `
+      <div class="product-card">
+        <div class="product-img">
+          ${p.emoji}
+          <div class="product-cat-badge">${catLabels[p.cat]}</div>
+          <div class="generic-tag">GENERIC</div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">${p.name}</div>
+          <div class="product-desc">${p.desc}</div>
+          <div class="product-footer">
+            <div>
+              <div class="product-price">${p.price} <span class="unit">/ ${p.unit}</span></div>
+            </div>
+            <div class="branded-compare">
+              <div class="branded-price">ब्रँडेड: ${p.brandedPrice}</div>
+              <div class="save-chip">💰 ${p.save} बचत</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function setFilter(cat, btn) {
+    currentFilter = cat;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts();
+  }
+
+  function filterProducts() {
+    searchQuery = document.getElementById('searchInput').value.toLowerCase();
+    renderProducts();
+  }
+
+  renderProducts();
+</script>
+</body>
+</html>
